@@ -95,7 +95,7 @@ public class AllService {
             }
         }
         if (hand.isEmpty()) {
-            eMessage = "No cards in hand";
+            eMessage = "No cards in hand / incomplete hand  ";
             return;
         }
         //zpracuje karty z web formulare
