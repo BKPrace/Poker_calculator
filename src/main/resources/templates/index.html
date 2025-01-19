@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css" th:href="@{/style.css}" />
+    <title>Poker Calculator</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+<body>
+
+
+
+<div class="error" th:if="${!allService.geteMessage().isEmpty()}" >
+
+    <p th:text="${allService.geteMessage()}"></p>
+</div>
+
+
+<div>
+    <h2>Choose your cards</h2>
+</div>
+
+
+
+    <table>
+        <form th:action="@{/home}" method="post" th:object="${allService}" autocomplete="off">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <div th:each="card : ${#numbers.sequence(0, 9, 1)}">
+
+            <tr th:if="${card % 2 == 0}">
+            <td>
+                <p class="player"  th:text="'Player No. ' + (${card / 2 + 1})"></p>
+            </td>
+                <td  >
+                    <p class="table" th:text="'Table Card No.'+ (${card / 2 + 1})" ></p>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <label th:text="'Card No. ' + (${card + 1})"></label>
+                        <select th:field="*{handsFromSite[__${card}__]}">
+                            <option th:text="'Choose a card'" th:value="0"></option>
+                            <option th:each="card1 : ${#numbers.sequence(8, 59, 1)}"
+                                    th:value="${card1}"
+                                    th:text="${allService.cardToString(card1)}">
+                            </option>
+                        </select>
+                    </div>
+                </td>
+                <td th:if="${card %2 ==0}">
+                    <div>
+                        <label th:text="'Card No. ' + (${card/2 + 1})"></label>
+                        <select th:field="*{tableFromSite[__${card/2}__]}">
+                            <option th:text="'Choose a card'" th:value="0"></option>
+                            <option th:each="card1 : ${#numbers.sequence(8, 59, 1)}"
+                                    th:value="${card1}"
+                                    th:text="${allService.cardToString(card1)}">
+                            </option>
+                        </select>
+
+
+                    </div>
+                </td>
+
+            </tr>
+
+        </div>
+
+        <tr>
+            <td >
+                <label th:text="'Other players'"></label>
+                <select th:field="*{players}">
+                    <option th:text="0" th:value="0"></option>
+                    <option th:text="1" th:value="1"></option>
+                    <option th:text="2" th:value="2"></option>
+                    <option th:text="3" th:value="3"></option>
+                    <option th:text="4" th:value="4"></option>
+                    <option th:text="5" th:value="5"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+        </form>
+        <tr>
+            <td colspan="2">
+                <form th:action="@{/clear}" method="post">
+                    <button type="submit">Clear</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${allService.resultToString() != 'null'}" >
+        <p th:each="win : ${#numbers.sequence(0, allService.getResult().length -3, 1)}"
+           th:text="'Player No. ' + ${win+1} + ' has ' + ${allService.getResult()[win] * 100} + '% chance of winning'">
+        </p>
+        <p th:text="'There is ' + ${allService.getResult()[allService.getResult().length -2] * 100} + '% chance of a draw'">
+        </p>
+        <p th:if="${allService.getPlayers()>0}" th:text="'There is ' + ${allService.getResult()[allService.getResult().length -1] * 100} + '% chance of simulated player winning'">
+
+    </div>
+
+</body>
+</html>
