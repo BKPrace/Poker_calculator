@@ -74,6 +74,7 @@ public class AllService {
         for (int i : handsFromSite) {
             if (i!=0 && (Collections.frequency( handsFromSite, i) >1|| tableFromSite.contains(i))) {
                 eMessage = "Same card was used multiple times";
+                result = null;
                 return;
             }
         }
@@ -81,6 +82,7 @@ public class AllService {
         for (int i : tableFromSite) {
             if( i!=0 && Collections.frequency(tableFromSite,i)>1){
                 eMessage = "Same card was used multiple times";
+                result = null;
                 return;
             }
         }
@@ -96,6 +98,7 @@ public class AllService {
         }
         if (hand.isEmpty()) {
             eMessage = "No cards in hand / incomplete hand  ";
+            result = null;
             return;
         }
         //zpracuje karty z web formulare
