@@ -603,7 +603,7 @@ public class test {
         allService.getTableFromSite().set(0, 54);
         allService.getTableFromSite().set(1, 42);
         allService.getTableFromSite().set(3, 46);
-        allService.setPlayers(1);
+        allService.setPlayers(0);
         allService.calculate();
         for (float a : allService.getResult()) {
             System.out.print(a + ", ");
@@ -616,14 +616,31 @@ public class test {
 
     }
 
+
     @Test
-    public void NoElementError() {
+    public void testKartyOutOfBounds() {
         AllService allService = new AllService();
+        allService.getHandsFromSite().set(0, 8);
+        allService.getHandsFromSite().set(1, 9);
+        allService.getHandsFromSite().set(4, 10);
+        allService.getHandsFromSite().set(5, 11);
+
+        allService.getTableFromSite().set(0, 12);
+
+
         allService.calculate();
         for (float a : allService.getResult()) {
             System.out.print(a + ", ");
 
         }
+
+    }
+
+    @Test
+    public void NoElementError() {
+        AllService allService = new AllService();
+        allService.calculate();
+
     }
     @Test
     public void testcalculateRandom() {

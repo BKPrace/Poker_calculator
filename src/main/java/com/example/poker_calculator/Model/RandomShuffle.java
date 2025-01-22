@@ -42,7 +42,9 @@ public class RandomShuffle {
                 for (int a = 0; a< hand.size(); a++){
                     if (hand.get(a).getCards().contains(cards.get(i)) ) {
                         cards.remove(i);
+
                         i--;
+                        break;
                     }
                 }
 
