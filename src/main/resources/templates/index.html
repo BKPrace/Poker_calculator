@@ -78,7 +78,7 @@
         </div>
 
         <tr>
-            <td >
+            <td colspan="2" class="players" >
                 <label th:text="'Other players'"></label>
                 <select th:field="*{players}">
                     <option th:text="0" th:value="0"></option>
@@ -106,7 +106,7 @@
         </tbody>
     </table>
 
-    <div th:if="${allService.resultToString() != 'null'}" >
+    <div class="result" th:if="${allService.resultToString() != 'null'}" >
         <p th:each="win : ${#numbers.sequence(0, allService.getResult().length -3, 1)}"
            th:text="'Player No. ' + ${win+1} + ' has ' + ${allService.getResult()[win] * 100} + '% chance of winning'">
         </p>

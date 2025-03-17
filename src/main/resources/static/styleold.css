@@ -1,0 +1,19 @@
+* {
+    margin: 0.01px;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: center;
+
+}
+table {
+    border-collapse: collapse; margin-bottom: 2em;
+    margin-left: 3%;
+}
+form{text-align: center;}
