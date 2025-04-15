@@ -29,7 +29,6 @@ public class DefaultController {
 
     @GetMapping("/home")
     public String getCards(Model model) {
-        // Ensure an initialized AllService is added
         model.addAttribute("allService", allService);
         return "index";
     }

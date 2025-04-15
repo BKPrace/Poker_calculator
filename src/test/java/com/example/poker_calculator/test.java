@@ -291,14 +291,16 @@ public class test {
         table.addCard(16);
         table.addCard(10);
         table.addCard(19);
+        List<Hand> hands = new ArrayList<Hand>();
+        hands.add(hand);
 
-
-        Calculate calculate = new Calculate(hand, table);
-        float x;
-        x = calculate.calculate();
-        System.out.println(x);
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 1);
+        float[] x = calculate.calculate();
+        for (float a: x) {
+            System.out.print(a+ ", ");
+        }
         // tento assert upozorní na změnu výsledku, ne jeho správnost. ta byla ověřena porovnáním s internetovými aplikacemi
-        assertEquals(0.5479970574378967, x);
+        assertEquals(0.5479970574378967, x[0]);
     }
 
     @Test
@@ -311,12 +313,16 @@ public class test {
         table.addCard(31);
 
 
-        Calculate calculate = new Calculate(hand, table);
-        float x;
-        x = calculate.calculate();
-        System.out.println(x);
+        List<Hand> hands = new ArrayList<Hand>();
+        hands.add(hand);
+
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 1);
+        float[] x = calculate.calculate();
+        for (float a: x) {
+            System.out.print(a+ ", ");
+        }
         // tento assert upozorní na změnu výsledku, ne jeho správnost. ta byla ověřena porovnáním s internetovými aplikacemi
-        assertEquals(0.2669404447078705, x);
+        assertEquals(0.2669404447078705, x[0]);
     }
 
     @Test
@@ -329,12 +335,16 @@ public class test {
         table.addCard(46);
 
 
-        Calculate calculate = new Calculate(hand, table);
-        float x;
-        x = calculate.calculate();
-        System.out.println(x);
+        List<Hand> hands = new ArrayList<Hand>();
+        hands.add(hand);
+
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 1);
+        float[] x = calculate.calculate();
+        for (float a: x) {
+            System.out.print(a+ ", ");
+        }
         // tento assert upozorní na změnu výsledku, ne jeho správnost. ta byla ověřena porovnáním s internetovými aplikacemi
-        assertEquals(0.7098720669746399, x);
+        assertEquals(0.7098720669746399, x[0]);
     }
 
 
@@ -375,7 +385,7 @@ public class test {
         hands.add(hand2);
         hands.add(hand3);
 
-        CalculateMP calculate = new CalculateMP(hands, table);
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 0);
         float[] x = calculate.calculate();
         for (float a: x) {
             System.out.print(a+ ", ");
@@ -404,7 +414,7 @@ public class test {
         hands.add(hand2);
         hands.add(hand3);
 
-        CalculateMP calculate = new CalculateMP(hands, table);
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 0);
         float[] x = calculate.calculate();
         for (float a: x) {
             System.out.print(a+ ", ");
@@ -429,12 +439,16 @@ public class test {
         table.addCard(48);
         table.addCard(12);
 
-        Calculate calculate = new Calculate(hand, table);
-        float x;
-        x = calculate.calculate();
-        System.out.println(x);
+        List<Hand> hands = new ArrayList<Hand>();
+        hands.add(hand);
+
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 1);
+        float[] x = calculate.calculate();
+        for (float a: x) {
+            System.out.print(a+ ", ");
+        }
         // tento assert upozorní na změnu výsledku, ne jeho správnost. ta byla ověřena porovnáním s internetovými aplikacemi
-        assertEquals(0.37979796528816223, x);
+        assertEquals(0.37979796528816223, x[0]);
     }
 
 
@@ -455,8 +469,7 @@ public class test {
         List<Hand> hands = new ArrayList<Hand>();
         hands.add(hand1);
 
-
-        CalculateMP calculate = new CalculateMP(hands, table);
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 0);
         float[] x = calculate.calculate();
         for (float a: x) {
             System.out.print(a+ ", ");
@@ -629,6 +642,7 @@ public class test {
 
 
         allService.calculate();
+        System.out.println(allService.geteMessage());
         for (float a : allService.getResult()) {
             System.out.print(a + ", ");
 
@@ -640,6 +654,9 @@ public class test {
     public void NoElementError() {
         AllService allService = new AllService();
         allService.calculate();
+
+        System.out.println(allService.geteMessage());
+        assertEquals("No cards in hand / incomplete hand", allService.geteMessage());
 
     }
     @Test

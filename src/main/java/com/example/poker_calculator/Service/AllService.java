@@ -97,7 +97,7 @@ public class AllService {
             }
         }
         if (hand.isEmpty()) {
-            eMessage = "No cards in hand / incomplete hand  ";
+            eMessage = "No cards in hand / incomplete hand";
             result = null;
             return;
         }
