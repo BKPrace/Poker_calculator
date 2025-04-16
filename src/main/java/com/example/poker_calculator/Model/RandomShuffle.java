@@ -47,23 +47,16 @@ public class RandomShuffle {
                         break;
                     }
                 }
-
             }
         }
-
         //nahodne naplnime karty a uvidime kdo vyhraje
         Random rand = new Random();
-
         //momentalne je nastaveno 500 000 rozdani,
         // netrva to az moc dlouho a vysledky jsou srovnatelne s milionem rozdani
-        // vseobecne jsou mimo ani ne o jedno procento od vysledku generovanych za pomoci CalculateMPWithOthers
         for (int i= 0; i < 500000; i++){
-
             newTable = new Table();
             newTable.setCards(table.getCards());
             List<Hand> newHands = new ArrayList<>(hand);
-
-
             ArrayList<Integer> used = new ArrayList<>();
             for (int a = 0; a < length + players; a++){
                 //naplnime stul
@@ -74,7 +67,6 @@ public class RandomShuffle {
                     }
                     used.add(card);
                     newTable.addCard(cards.get(card));
-
                     //vytvorime hrace
                 } else {
                     int card = rand.nextInt(cards.size());
@@ -91,15 +83,10 @@ public class RandomShuffle {
                     hand1.setCards(cards.get(card), cards.get(card2));
 
                     newHands.add(hand1);
-
                 }
             }
-            //nechame CalculateMPWithOthers vyhodnotit kdo vyhral,
-            // ale s plnym stolem a poctem hracu takze dojde pouze ke zkoumani teto jedne kombinace
-            // bez jakehokoliv dalsiho generovani
             CalculateMPWithOthers calc = new CalculateMPWithOthers(newHands, newTable,0 );
             calc.calculate();
-            //najdeme nejsilnejsi ruku
             int winner =0;
             for ( int a =0; a<calc.getResult().length; a++) {
                 // vzdy bude jasne vraceno jestli pro nase generovani vyhral jeden hrac nebo je remiza
