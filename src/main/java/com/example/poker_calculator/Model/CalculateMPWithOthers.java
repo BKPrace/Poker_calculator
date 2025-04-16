@@ -105,19 +105,13 @@ public class CalculateMPWithOthers {
                 newTable.setCards(table.getCards());
                 newTable.addCard(cards.get(i));
                 calculateHands();
-
             } else {
                 for (int j = i+1; j < cards.size(); j++) {
-                    //print pro urceni rychosti behu kodu behem testu
-                    //System.out.println(i*100 + j);
-
                     if (length == 2) {
-
                         newTable.setCards(table.getCards());
                         newTable.addCard(cards.get(j));
                         newTable.addCard(cards.get(i));
                         calculateHands();
-
                     } else {
                         // neni doporuceno, trva zatracene dlouho
                         for (int k = j+1; k <cards.size() ; k++) {
@@ -130,8 +124,6 @@ public class CalculateMPWithOthers {
                                     newTable.addCard(cards.get(l));
                                     newTable.addCard(cards.get(m));
                                     calculateHands();
-
-
                                 }
                             }
 
@@ -172,7 +164,8 @@ public class CalculateMPWithOthers {
         // bohuzel nejde o jednoduchou pravdepodobnost a tak se musi zkoumat kazda mozna kombinace,
         // a to i klidne trojic rukou karet. z vykonostnich duvodu zde maximalne 2 dvojice
 
-        //zajima nas pouze jestli vyhrala nejaka zadana ruka ci ruka generovana, proto je zde prepinac aby clovek zbytecne negeneroval dalsi ruce kdyz uz stejne prohral
+        //zajima nas pouze jestli vyhrala nejaka zadana ruka ci ruka generovana, proto je zde prepinac aby se
+        // negenerovaly dalsi ruce kdyz uz stejne prohral
         ArrayList<Boolean> better = new ArrayList<>();
         ArrayList<Boolean> draw = new ArrayList<>();
         for (int i =0; i< players;i++) {
@@ -180,11 +173,6 @@ public class CalculateMPWithOthers {
             draw.add(false);
         }
         int value;
-        //za tohle se omlouvam, asi dva dny jsem premyslel jak to udelat pres while nebo neco podobneho,
-        // proste cokoliv jen ne zanorene for cykly, ale nic me nenapadlo
-        //teda krome rekurze, a tu pouzivat na tohle nechci
-
-
         //pocet generovanych hracu
         if (players>0) {
             for (int i = 0; i < cards.size() - players; i++) {
@@ -240,56 +228,7 @@ public class CalculateMPWithOthers {
 
 
                                 }
-                                if (players > 2) {
-                                    for (int m = k + 1; m < cards.size() - (players - 2); m++) {
-                                        if (newTable.getCards().contains(cards.get(m) )) {
-                                            continue;
-                                        }
-                                        if (m == k || m == l || m == j) {
-                                            continue;
-                                        }
-                                        for (int n = m + 1; n < cards.size(); n++) {
-                                            if (newTable.getCards().contains(cards.get(n) )) {
-                                                continue;
-                                            }
-                                            if (n == l || n == j || n == k) {
-                                                continue;
-                                            }
-                                            if (!better.contains(true)) {
-                                                newHand.setCards(cards.get(m), cards.get(n));
-                                                workingCards.setHand(newTable.getCards());
-                                                workingCards.addHand(newHand.getCards());
-                                                comb.setCards(workingCards.getHand());
-                                                value = comb.combination();
-                                                if (value>max) {
-                                                    better.set(2,true);
-                                                } else if (value==max) {
-                                                    draw.set(2,true);
-                                                }
 
-                                            }
-                                                //pokud byla za celou dobu vygenerovana silnejsi kombinace,
-                                            // prida se vitezstvi generovanym kartam nebo se pripadne zada remiza
-                                                if (better.contains(true)) {
-                                                    win[win.length-1]++;
-                                                } else if (draw.contains(true)) {
-                                                    win[hand.size()] ++;
-                                                } else {
-                                                    //jinak se dava vitezstvi nejsilnejsi kombinaci zadany hracem
-                                                    if (Collections.frequency(val, max) ==1) {
-                                                        win[val.indexOf(max)]++;
-                                                    } else {
-                                                        win[hand.size()] ++;
-                                                    }
-                                                }
-
-                                                count++;
-                                            //zbavime se pripadne nejsilnejsi kombinace pri generovani nove
-                                            better.set(2,false);
-                                            draw.set(2,false);
-                                        }
-                                    }
-                                } else {
                                     if (better.contains(true)) {
                                         win[win.length-1]++;
                                     } else if (draw.contains(true)) {
@@ -303,7 +242,7 @@ public class CalculateMPWithOthers {
                                     }
 
                                     count++;
-                                }
+
                                 better.set(1,false);
                                 draw.set(1,false);
                             }

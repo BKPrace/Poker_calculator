@@ -549,12 +549,12 @@ public class test {
         hands.add(hand);
 
 
-        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table,3);
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table,2);
         float[] x = calculate.calculate();
         for (float a: x) {
             System.out.print(a+ ", ");
         }
-        assertEquals(0.9939393401145935, x[0]);
+        assertEquals(0.9959595799446106, x[0]);
     }
 
     @Test
