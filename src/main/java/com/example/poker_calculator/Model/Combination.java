@@ -38,23 +38,17 @@ public class Combination {
     }
 
     public int combination() {
-        //postupně se budou hledat kombinace od nejsilnější. v okamžiku kdy se jedna najde tak se vrátí její "hodnota"
         Collections.sort(cards);
         int combVal =0;
-        // postupka v barvě. královská postupka se může ignorovat,
-        // protože jde akorát o název pro nejsilnější postupku v barvě
             int suit= getSuit(cards.get(6));
             int value= getValue(cards.get(6));
-
             //pocet karet ktere jdou za sebou
             int hit=1;
-
             //pocet za sebou nejdoucich karet
             int dud=0;
             int maxHit=0;
             int maxSuit=-1;
             for (int i=5; i >=0; i--) {
-                //mame 7 karet(5 na stole, 2 v ruce) kdyz 3 nejsou za sebou tak nelze mit postupku z 5 karet
                 if (dud>3) {
                     break;
                 }
@@ -62,28 +56,20 @@ public class Combination {
                 int cardValue = getValue(cards.get(i));
                 int cardSuite = getSuit(cards.get(i));
                 if ((cardValue == value-1) && (cardSuite == suit) ) {
-                    //karta muze tvorit postupku
                     hit++;
                     if (hit ==5) {
-                        //kazda kombinace ma cislo od 25 a niz podle kombinace, zbyla cisla jsou sila konkretni kombinace
-                        //napr postupka s nejvyssi kartou K je silnejsi nez postupka s nejvyssi kartou 7
                         return  (10<<25)+ ((cardValue +4)<< 20 );
                     }
                     //jsme v postupce jdeme na dalsi kartu
                     value = cardValue;
-
                     //dalsi karta neni stejne barvy ale je vhodna hodnota,
                     // karta pod ni muze mit take stejnou hodnotu a spravnou barvu, proto neresetujeme hit
                 } else if (i>0 && (getValue(cards.get(i-1)) == value -1) ) {
                     dud++;
-
-                    //karta ma spatnou hodnotu a nemuze byt soucasti postupky
                 } else {
                     dud++;
                     value = cardValue;
                     suit = cardSuite;
-
-
                     hit=1;
                 }
                 // eso je brane jako hodnota 14, a proto je potreba specialne osetrit postupku s esem jako 1
@@ -92,13 +78,13 @@ public class Combination {
                     maxSuit = suit;
                 }
             }
-
             // ošetření pro eso jako 1
             value = getValue(cards.get(0));
             suit = getSuit(cards.get(0));
 
-                if (maxHit ==4 && (getValue(cards.get(cards.size()-1)) ==14 ) && getSuit(cards.get(cards.size()-1)) == maxSuit ) {
-                    //v pripade 4 po sobe jdoucich karet ve stejne barve zkoumame jesltli tvori s esem postupku
+                if (maxHit ==4 && (getValue(cards.get(cards.size()-1)) ==14 ))  {
+                    if (cards.contains((14<<2) + maxSuit)) {
+                    //v pripade 4 po sobe jdoucich karet ve stejne barve zkoumame jestli tvori s esem postupku
                     Boolean flush = true;
                     for (int i=2; i<6;i++) {
                         if (!cards.contains((i<<2) + maxSuit)) {
@@ -110,7 +96,7 @@ public class Combination {
                     if (flush){
                         return  (10<<25) + (5<<20);
                     }
-
+                    }
             }
         //čtveřice a fullhouse
         dud=0;
@@ -122,8 +108,6 @@ public class Combination {
         int trojice=-1;
         int dvojice=-1;
         for (int i=6; i>0;i--) {
-
-
             if (dud>3) {
                 break;
             }

@@ -428,8 +428,8 @@ public class test {
             System.out.print(a+ ", ");
         }
         assertEquals(0.5658338665962219, x[0]);
-        assertEquals(0.16529953479766846, x[1]);
-        assertEquals(0.226392924785614, x[2]);
+        assertEquals(0.16529734432697296, x[1]);
+        assertEquals(0.2263951152563095, x[2]);
         assertEquals(0.04247370362281799, x[3]);
 
 
