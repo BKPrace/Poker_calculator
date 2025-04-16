@@ -2,7 +2,7 @@ package com.example.poker_calculator.Model;
 
 import java.util.HashSet;
 import java.util.Set;
-    //Zakladni ruka libovolneho hrace ulozena v Setu.
+    //Zakladni ruka libovolneho hrace ulozena v Setu .
 public class Hand {
     private Set<Integer> cards = new HashSet<>();
 
