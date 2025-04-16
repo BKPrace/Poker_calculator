@@ -61,7 +61,7 @@ public class CalculateMPWithOthers {
         this.hand = hand;
         this.table = table;
         //
-        // soucasne max 2 hraci z vykonostnich duvodu, vyssi cislo resi classa RandomShuffle
+        // soucasne max 2 hraci z vykonostnich duvodu, vyssi cislo resi trida RandomShuffle
         this.players = players;
     }
 
@@ -86,29 +86,15 @@ public class CalculateMPWithOthers {
                     for (int a = 0; a< hand.size(); a++){
                         if (hand.get(a).getCards().contains(cards.get(i)) ) {
                             cards.remove(i);
-
                                 i--;
                                 break;
-
-
                         }
                     }
-
                 }
             }
         }
-
-        //za zanorene forcykly se omlouvam, lepsi reseni me nenapadlo.
-        // verim ze to jde nejak za pomoci while nebo fronty ci zasobniku,
-        // ale ja uprimne nevim jak na to
-
-
         //jdeme generovat mozne vylozeni na stul
-
         //length = pocet chybejicich karet na stole
-
-        //calculateHands() = pocita sanci na vyhru ruznych dvojic karet vuci sobe
-        // s jiz drive vygenerovanym stolem
         if (length ==0) {
             //vytvarime simulovany stul
             newTable.setCards(table.getCards());

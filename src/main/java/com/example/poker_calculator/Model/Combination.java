@@ -127,16 +127,12 @@ public class Combination {
                             if (trojice == -1) {
                                 trojice = getValue(cards.get(i));
                             }
-
                         }
                     }
-
                     //mame dve za sebou jdouci karty ktere nejsou soucasti trojice => fullhouse
                     if (dvojice ==-1 && getValue(cards.get(i)) != trojice) {
                         dvojice = getValue(cards.get(i));
                     }
-
-
                 }
             } else {
                 if (extCard == -1) {
@@ -145,7 +141,6 @@ public class Combination {
                 dud++;
                 hit=1;
             }
-
         }
         //fullhouse
         if (trojice>=0 && dvojice>=0) {
@@ -186,22 +181,18 @@ public class Combination {
         maxHit=0;
         //maxhit osetreni pro postupku s esem jako 1
         int maxHitPosition =-1;
-
         for (int i=5; i >=0; i--) {
             if (dud>3) {
                 break;
             }
             int cardValue = getValue(cards.get(i));
             if (cardValue == value-1)   {
-
                 hit++;
                 if (hit ==5) {
                     return  (6<<25)+ ((cardValue +4)<< 20 );
                 }
-
                 value = cardValue;
-
-                //toto znamena ze soucasna karta ma stejnou hodnotu jako minula a ta dalsi je o jedna nizsi,
+                //soucasna karta ma stejnou hodnotu jako minula a ta dalsi je o jedna nizsi,
                 // coz neprerusi postupku, ale nizsi kartu to zapocte az pri dalsi iteraci
             } else if (i>0 && (getValue(cards.get(i-1)) == value -1) ) {
                 dud++;
@@ -209,7 +200,6 @@ public class Combination {
                 //karty prerusili postupku
                 dud++;
                 value = cardValue;
-
                 hit=1;
             }
             if (hit>maxHit){
@@ -238,9 +228,7 @@ public class Combination {
                 } else {
                     dvojice = getValue(cards.get(i));
                 }
-
             }
-
         }
         //vime ze neni fullhouse, tudiz pokud je trojice tak dvojice neni
         if (trojice>0) {
