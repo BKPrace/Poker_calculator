@@ -22,7 +22,7 @@ public class AllService {
     private Table table = new Table();
     private float[] result;
 
-    //pocet generovanych hracu. je jich klidne mozne generovat 10 ale postupne to spomaluje vypocet.
+    //pocet generovanych hracu. je jich klidne mozne generovat 10 ale postupne to zpomaluje vypocet.
     // momentalne je ve formulari max mozny 5
     private int players =0;
 

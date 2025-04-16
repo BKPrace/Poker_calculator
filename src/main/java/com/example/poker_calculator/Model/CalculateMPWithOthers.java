@@ -74,12 +74,6 @@ public class CalculateMPWithOthers {
         // prvni mista win jsou podle poradi rukou v hand
         win = new int[hand.size() +2];
 
-        //pouze pro testovaci ucely, ve finalni verzi nebude.
-        // vicemene pro me pokusy ale nemelo by byt mozno aby nastalo pres webove rozhrani
-        if (table.getCards().size()>5) {
-            System.out.println("moc karet na stole");
-        }
-
         //odstranime karty ktere jiz jsou napevno rozdane a nebudou se menit ze seznamu generovatelnych karet.
         // if je zde pro pripad, ze je tato funkce volana z classy RandomShuffle,
         // ktera se jiz ujistila ze zde nejsou zadne duplikace a neni jiz potreba zadne karty generovat

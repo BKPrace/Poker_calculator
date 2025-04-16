@@ -197,12 +197,16 @@ public class test {
         table.addCard(19);
         table.addCard(22);
 
-        Calculate calculate = new Calculate(hand, table);
-        float x;
-        x = calculate.calculate();
-        System.out.println(x);
+        List<Hand> hands = new ArrayList<Hand>();
+        hands.add(hand);
+
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 1);
+        float[] x = calculate.calculate();
+        for (float a: x) {
+            System.out.print(a+ ", ");
+        }
         // tento assert upozorní na změnu výsledku, ne jeho správnost. ta byla ověřena porovnáním s internetovými aplikacemi
-        assertEquals(0.5461572408676147, x);
+        assertEquals(0.5461572408676147, x[0]);
     }
 
     @Test
@@ -215,12 +219,16 @@ public class test {
         table.addCard(19);
         table.addCard(45);
 
-        Calculate calculate = new Calculate(hand, table);
-        float x;
-        x = calculate.calculate();
-        System.out.println(x);
+        List<Hand> hands = new ArrayList<Hand>();
+        hands.add(hand);
+
+        CalculateMPWithOthers calculate = new CalculateMPWithOthers(hands, table, 1);
+        float[] x = calculate.calculate();
+        for (float a: x) {
+            System.out.print(a+ ", ");
+        }
         // tento assert upozorní na změnu výsledku, ne jeho správnost. ta byla ověřena porovnáním s internetovými aplikacemi
-        assertEquals(0.28849363327026367, x);
+        assertEquals(0.28849363327026367, x[0]);
     }
 
     @Test
