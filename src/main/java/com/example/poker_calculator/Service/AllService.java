@@ -68,8 +68,6 @@ public class AllService {
         this.hand.add(hand);
     }
     public void calculate(){
-
-
             //resi duplicity
         for (int i : handsFromSite) {
             if (i!=0 && (Collections.frequency( handsFromSite, i) >1|| tableFromSite.contains(i))) {
@@ -86,7 +84,6 @@ public class AllService {
                 return;
             }
         }
-
         hand = new ArrayList<Hand>();
         table = new Table();
         for (int i = 0; i < handsFromSite.size(); i=i+2) {
@@ -111,8 +108,6 @@ public class AllService {
         //nahodne rozdani pro moc vykonostne narocne vypocty,
         // byla zvolena hranice ktera snad zabrani delsimu vypoctu nez 10 vterin (na mem zarizeni)
         if (players >2 || (5-(table.getCards().size()) + players) >4) {
-
-            //System.out.println("random shuffle");
             eMessage = "Because of computing requirements of this calculation, posibly taking minutes or hours, " +
                     "expect to be given a simulated " +
                     "result based on half a million shuffles, which might not be accurate";
@@ -126,12 +121,6 @@ public class AllService {
             float[] x = calc.calculate();
             result =x ;
         }
-
-
-
-
-
-
     }
         // funkce pro formular na prevod karet na text
     public String cardToString(int card) {

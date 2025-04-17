@@ -39,10 +39,7 @@ public class DefaultController {
         allService.setTableFromSite(formAllService.getTableFromSite());
         allService.setPlayers(formAllService.getPlayers());
 
-
         allService.calculate();
-
-
         model.addAttribute("allService", allService);
         return "index";
     }
@@ -53,7 +50,4 @@ public class DefaultController {
         model.addAttribute("allService", allService);
         return "redirect:/home";
     }
-
-
-
 }
