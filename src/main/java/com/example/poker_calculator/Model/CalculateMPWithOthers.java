@@ -29,6 +29,9 @@ public class CalculateMPWithOthers {
 
     //pocet hracu ke generaci
     private int players;
+    //prepinac pokud je volan tridou randomShuffle a nevi ze pocita s generovanymi hraci.
+    // ovlivnuje vystup pro vyhru
+    private int randomShuffle =0;
 
     //vysledny return v procentech
     private float[] result;
@@ -63,6 +66,13 @@ public class CalculateMPWithOthers {
         //
         // soucasne max 2 hraci z vykonostnich duvodu, vyssi cislo resi trida RandomShuffle
         this.players = players;
+    }
+
+    public CalculateMPWithOthers(List<Hand> hand, Table table, int players, int randomShuffle) {
+        this.hand = hand;
+        this.table = table;
+        this.players = players;
+        this.randomShuffle = randomShuffle;
     }
 
     public float[] calculate() {
@@ -273,7 +283,12 @@ public class CalculateMPWithOthers {
             if (Collections.frequency(val, max) ==1) {
                 win[val.indexOf(max)]++;
             } else {
-                win[hand.size()] ++;
+                //vyhral generovany hrac tridy randomShuffle
+                if (val.indexOf(max) > (hand.size()-1) -randomShuffle) {
+                    win[hand.size()+1] ++;
+                } else {
+                    win[hand.size()] ++;
+                }
             }
             count++;
         }

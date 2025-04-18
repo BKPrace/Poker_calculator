@@ -85,7 +85,7 @@ public class RandomShuffle {
                     newHands.add(hand1);
                 }
             }
-            CalculateMPWithOthers calc = new CalculateMPWithOthers(newHands, newTable,0 );
+            CalculateMPWithOthers calc = new CalculateMPWithOthers(newHands, newTable,0, players);
             calc.calculate();
             int winner =0;
             for ( int a =0; a<calc.getResult().length; a++) {
